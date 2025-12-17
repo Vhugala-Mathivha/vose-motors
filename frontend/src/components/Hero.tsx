@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Hero: React.FC = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -14,27 +15,34 @@ const Hero: React.FC = () => {
       setMousePos({ x, y });
       idleTimer = window.setTimeout(() => setIsIdle(true), 2500);
     };
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
       clearTimeout(idleTimer);
     };
   }, []);
 
-  const carTransform = isIdle ? undefined : `rotateY(${mousePos.x}deg) rotateX(${mousePos.y}deg) scale(1.2)`;
-  const overlayTransform = isIdle ? undefined : `rotateY(${mousePos.x * 1.8}deg) rotateX(${mousePos.y * 1.8}deg) translateZ(80px)`;
+  const carTransform = isIdle
+    ? undefined
+    : `rotateY(${mousePos.x}deg) rotateX(${mousePos.y}deg) scale(1.2)`;
+  const overlayTransform = isIdle
+    ? undefined
+    : `rotateY(${mousePos.x * 1.8}deg) rotateX(${mousePos.y * 1.8}deg) translateZ(80px)`;
 
   return (
-    <section id="home" className="relative h-screen w-full overflow-hidden bg-vose-black flex items-center justify-center perspective-container">
-      <div className="absolute inset-0 z-0 flex items-center justify-center" style={{ perspective: '2000px' }}>
+    <section
+      id="home"
+      className="relative h-screen w-full overflow-hidden bg-vose-black flex items-center justify-center perspective-container"
+    >
+      <div className="absolute inset-0 z-0 flex items-center justify-center" style={{ perspective: "2000px" }}>
         <div
           className={`relative w-[115%] h-[115%] bg-cover bg-center transition-all duration-700 ease-out ${
-            isIdle ? 'animate-vose-3d-idle' : ''
+            isIdle ? "animate-vose-3d-idle" : ""
           }`}
           style={{
-             backgroundImage: 'url("/images/one.jpg")',
+            backgroundImage: 'url("/images/one.jpg")',
             transform: carTransform,
-            transformStyle: 'preserve-3d',
+            transformStyle: "preserve-3d",
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-t from-vose-black via-transparent to-vose-black/60 mix-blend-multiply" />
@@ -43,14 +51,16 @@ const Hero: React.FC = () => {
             className="absolute inset-0 pointer-events-none transition-opacity duration-1000"
             style={{
               opacity: isIdle ? 0.2 : 0.7,
-              background: `radial-gradient(circle at ${50 + mousePos.x}% ${50 - mousePos.y}%, rgba(255,255,255,0.2) 0%, transparent 50%)`,
+              background: `radial-gradient(circle at ${50 + mousePos.x}% ${
+                50 - mousePos.y
+              }%, rgba(255,255,255,0.2) 0%, transparent 50%)`,
             }}
           />
           <div
             className={`absolute inset-0 z-10 pointer-events-none transition-all duration-700 ease-out ${
-              isIdle ? 'animate-vose-overlay-idle' : ''
+              isIdle ? "animate-vose-overlay-idle" : ""
             }`}
-            style={{ transform: overlayTransform, transformStyle: 'preserve-3d' }}
+            style={{ transform: overlayTransform, transformStyle: "preserve-3d" }}
           >
             <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-vose-red/20 rounded-full blur-[100px] animate-pulse" />
             <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-white/5 rounded-full blur-[120px]" />
@@ -68,13 +78,16 @@ const Hero: React.FC = () => {
           VOSE MOTORS
         </h1>
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 opacity-0 animate-[vose-fade-up_1s_ease-out_1s_forwards] pointer-events-auto">
-          <a href="#in-stock" className="group relative px-12 py-4 bg-vose-red text-white font-bold tracking-widest overflow-hidden transition-all duration-300">
+          <Link
+            to="/inventory"
+            className="group relative px-12 py-4 bg-vose-red text-white font-bold tracking-widest overflow-hidden transition-all duration-300"
+          >
             <span className="relative z-10">BROWSE INVENTORY</span>
             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
             <span className="absolute inset-0 flex items-center justify-center text-vose-black font-bold tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
               BROWSE INVENTORY
             </span>
-          </a>
+          </Link>
           <a
             href="#sell"
             className="px-12 py-4 border border-white/20 backdrop-blur-md text-white font-bold tracking-widest hover:border-vose-red transition-all transform hover:scale-105"

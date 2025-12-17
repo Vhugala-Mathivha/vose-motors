@@ -5,55 +5,37 @@ interface InStockProps {
   cars: Car[];
   onCarClick: (car: Car) => void;
   onBookingClick: () => void;
+  maxCards?: number; // defaults to 4 for Find My Car; pass 12 on Inventory page
 }
 
 const defaultCars: Car[] = [
-  {
-    id: 101,
-    name: "2024 VOSE Phantom Edition",
-    year: 2024,
-    price: "R 89,900",
-    image: "/images/instack2.jpg",
-  } as Car,
-  {
-    id: 102,
-    name: "2023 VOSE Midnight GT",
-    year: 2023,
-    price: "R 74,500",
-    image: "/images/instack4.jpg",
-  } as Car,
-  {
-    id: 103,
-    name: "2022 VOSE Carbon S",
-    year: 2022,
-    price: "R 62,000",
-    image: "/images/bg.jpg",
-  } as Car,
-  {
-    id: 104,
-    name: "2021 VOSE Apex R",
-    year: 2021,
-    price: "R 55,900",
-    image: "/images/instock1.jpg",
-  } as Car,
+  { id: 101, name: "2024 VOSE Phantom Edition", year: 2024, price: "R 89,900", image: "/images/instock1.jpg" } as Car,
+  { id: 102, name: "2023 VOSE Midnight GT",     year: 2023, price: "R 74,500", image: "/images/eight.jpg" } as Car,
+  { id: 103, name: "2022 VOSE Carbon S",         year: 2022, price: "R 62,000", image: "/images/five.jpg" } as Car,
+  { id: 104, name: "2021 VOSE Apex R",           year: 2021, price: "R 55,900", image: "/images/four.jpeg" } as Car,
+  { id: 105, name: "2020 VOSE Velocity",         year: 2020, price: "R 49,900", image: "/images/instack2.jpg" } as Car,
+  { id: 106, name: "2019 VOSE Touring",          year: 2019, price: "R 44,500", image: "/images/instack4.jpg" } as Car,
+  { id: 107, name: "2018 VOSE GT-S",             year: 2018, price: "R 39,900", image: "/images/instalk3.jpg" } as Car,
+  { id: 108, name: "2017 VOSE Sportline",        year: 2017, price: "R 36,500", image: "/images/seven.jpg" } as Car,
+  { id: 109, name: "2016 VOSE Classic",          year: 2016, price: "R 32,900", image: "/images/three.jpg" } as Car,
+  { id: 110, name: "2015 VOSE Heritage",         year: 2015, price: "R 29,500", image: "/images/two.jpg" } as Car,
+  { id: 111, name: "2014 VOSE Urban",            year: 2014, price: "R 26,900", image: "/images/bg.jpg" } as Car,
+  { id: 112, name: "2013 VOSE Coupe",            year: 2013, price: "R 22,900", image: "/images/dealer2.jpg" } as Car,
 ];
 
-const fallbackImages = defaultCars.map((c) => c.image);
+const InStock: React.FC<InStockProps> = ({ cars, onCarClick, onBookingClick, maxCards = 4 }) => {
+  const images = defaultCars.map((c) => c.image);
+  const sourceList = cars && cars.length > 0 ? cars : defaultCars;
+  const list = sourceList.slice(0, maxCards).map((car, idx) => ({
+    ...car,
+    image: images[idx % images.length], // force local image by index
+  }));
 
-const InStock: React.FC<InStockProps> = ({ cars, onCarClick, onBookingClick }) => {
-  const list =
-    cars && cars.length >= 4
-      ? cars.slice(0, 4).map((car, idx) => {
-          const useFallback =
-            !car.image ||
-            car.image.includes("unsplash") ||
-            car.image.includes("placeholder");
-          const image = useFallback
-            ? fallbackImages[idx % fallbackImages.length]
-            : car.image;
-          return { ...car, image };
-        })
-      : [...cars, ...defaultCars].slice(0, 4);
+  // pad if fewer than maxCards
+  while (list.length < maxCards) {
+    const padCar = defaultCars[list.length % defaultCars.length];
+    list.push({ ...padCar, id: padCar.id + list.length }); // unique-ish id
+  }
 
   return (
     <section id="in-stock" className="py-16">

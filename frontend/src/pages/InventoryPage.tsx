@@ -16,7 +16,7 @@ const InventoryPage: React.FC<Props> = ({ cars, onCarClick, onBookingClick }) =>
       </h1>
       <p className="text-vose-gray mt-2">Select a vehicle and book a test drive.</p>
     </div>
-    <InStock cars={cars} onCarClick={onCarClick} onBookingClick={onBookingClick} />
+    <InStock cars={cars} onCarClick={onCarClick} onBookingClick={onBookingClick} maxCards={12} />
   </main>
 );
 

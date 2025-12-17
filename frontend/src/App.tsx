@@ -85,17 +85,9 @@ const App: React.FC = () => {
     openMessage("Vehicle Selected", `You selected ${car.name}.`);
   };
 
-  const handleBookingClick = async () => {
-    if (!selectedCar) {
-      openMessage("Select a Car", "Please select a car first from In Stock.");
-      return;
-    }
-    await api.post("/leads/test_drive/", {
-      lead_type: "test_drive",
-      car: selectedCar.id,
-      message: `Book a test drive for ${selectedCar.name}`,
-    });
-    openMessage("Request Sent", "We received your test drive request.");
+  // Updated: show service unavailable message instead of posting a lead
+  const handleBookingClick = () => {
+    openMessage("Service currently not available", "Please check back later.");
   };
 
   const handleSellLead = async (payload: { message: string; contact?: string }) => {
