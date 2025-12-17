@@ -1,0 +1,76 @@
+[
+  {
+    "model": "api.dealer",
+    "pk": 1,
+    "fields": {
+      "name": "VOSE Pretoria East",
+      "location": "Pretoria East, Gauteng",
+      "rating": "4.8",
+      "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=800&q=80"
+    }
+  },
+  {
+    "model": "api.dealer",
+    "pk": 2,
+    "fields": {
+      "name": "VOSE Sandton",
+      "location": "Sandton, Johannesburg",
+      "rating": "4.7",
+      "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=820&q=80&sat=-20"
+    }
+  },
+  {
+    "model": "api.dealer",
+    "pk": 3,
+    "fields": {
+      "name": "VOSE Cape Waterfront",
+      "location": "Waterfront, Cape Town",
+      "rating": "4.9",
+      "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=850&q=80&crop=entropy"
+    }
+  },
+  {
+    "model": "api.car",
+    "pk": 1,
+    "fields": {
+      "name": "2024 VOSE Phantom Edition",
+      "year": 2024,
+      "price": "R 89,900",
+      "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1200&q=80",
+      "dealer": 1
+    }
+  },
+  {
+    "model": "api.car",
+    "pk": 2,
+    "fields": {
+      "name": "2023 VOSE Midnight GT",
+      "year": 2023,
+      "price": "R 74,500",
+      "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1100&q=80&sat=-30&auto=format",
+      "dealer": 2
+    }
+  },
+  {
+    "model": "api.car",
+    "pk": 3,
+    "fields": {
+      "name": "2022 VOSE Carbon S",
+      "year": 2022,
+      "price": "R 62,000",
+      "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1150&q=80&h=800&crop=entropy",
+      "dealer": 3
+    }
+  },
+  {
+    "model": "api.car",
+    "pk": 4,
+    "fields": {
+      "name": "2021 VOSE Apex R",
+      "year": 2021,
+      "price": "R 55,900",
+      "image": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1050&q=80&fm=jpg&fit=crop",
+      "dealer": 1
+    }
+  }
+]
