@@ -40,7 +40,7 @@ const Hero: React.FC = () => {
             isIdle ? "animate-vose-3d-idle" : ""
           }`}
           style={{
-            backgroundImage: 'url("/images/nbg.jpg")',
+            backgroundImage: 'url("/images/nbg4.jpg")',
             transform: carTransform,
             transformStyle: "preserve-3d",
           }}
